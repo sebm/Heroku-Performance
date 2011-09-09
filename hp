@@ -13,7 +13,7 @@ f = open(sys.argv[1], 'r')
 freq = dict()
 
 for line in f:
-	speed = re.findall('service=([0-9]+)ms', line)[0].zfill(4)
+	speed = int(re.findall('service=([0-9]+)ms', line)[0])
 	if speed in freq:
 		freq[speed] += 1
 	else:
@@ -26,4 +26,4 @@ dw = csv.DictWriter(open(sys.argv[2], 'w'), delimiter=',', fieldnames=fieldnames
 dw.writer.writerow(fieldnames)
 
 for item in sorted(freq.iteritems()):
-    dw.writer.writerow([int(item[0]), item[1]])
+    dw.writer.writerow(item)
