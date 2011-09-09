@@ -5,19 +5,19 @@ import re
 import csv
 
 if len(sys.argv) < 3:
-	print 'Usage: hp inputfile outputfile\n\nwhere inputfile is the result of heroku -p router'
-	exit()
-	
+  print 'Usage: hp inputfile outputfile\n\nwhere inputfile is the result of heroku -p router'
+  exit()
+  
 f = open(sys.argv[1], 'r')
 
 freq = dict()
 
 for line in f:
-	speed = int(re.findall('service=([0-9]+)ms', line)[0])
-	if speed in freq:
-		freq[speed] += 1
-	else:
-		freq[speed] = 1
+  speed = int(re.findall('service=([0-9]+)ms', line)[0])
+  if speed in freq:
+    freq[speed] += 1
+  else:
+    freq[speed] = 1
 
 fieldnames = ['ms', 'freq']
 
